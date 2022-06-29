@@ -107,9 +107,18 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 var html = document.querySelector("#html");
 var style = document.querySelector("#style");
 // 通过加注释，让汉字不会影响到CSS
-var str1 = "\n/*\n * \u4F60\u597D\uFF0C\u6211\u53EB\u53EB\u5C0F\u5B63\n * \u63A5\u4E0B\u6765\u6211\u8981\u5C55\u793A\u4E00\u4E0B\u6211\u7684\u524D\u7AEF\u529F\u5E95\n * \u9996\u5148\u6211\u8981\u51C6\u5907\u4E00\u4E2Adiv\n */\n#div1 {\n  width: 200px;\n  height: 200px;\n}\n/*\n * \u63A5\u4E0B\u6765\uFF0C\u6211\u8981\u628Adiv\u53D8\u6210\u4E00\u4E2A\u516B\u5366\u56FE\n * \u9996\u5148\uFF0C\u628Adiv\u53D8\u6210\u4E00\u4E2A\u5706\n */\n#div1 {\n  border-radius: 50%;\n  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);\n  border: none;\n}\n/*\n * \u516B\u5366\u662F\u9634\u9633\u5F62\u6210\u7684\n * \u4E00\u9ED1\u4E00\u767D\n */\n#div1 {\n  background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%,rgba(255, 255, 255, 1) 50%,rgba(0, 0, 0, 1) 50%,rgba(0, 0, 0, 1) 100%);\n}\n/* \n * \u52A0\u4E00\u5BF9\u795E\u79D8\u7684\u5C0F\u7403\n */\n#div1::before {\n  width: 100px;\n  height: 100px;\n  top: 0;\n  left: 50%;\n  transform: translateX(-50%);\n  background: radial-gradient(circle,rgba(255, 255, 255, 1) 15%,rgba(0, 0, 0, 1) 15%,rgba(0, 0, 0, 1) 100%);\n  border-radius: 50%;\n}\n#div1::after {\n  width: 100px;\n  height: 100px;\n  bottom: 0;\n  left: 50%;\n  transform: translateX(-50%);\n  background: radial-gradient(circle,rgba(0, 0, 0, 1) 15%,rgba(255, 255, 255, 1) 15%,rgba(255, 255, 255, 1) 100%);\n  border-radius: 50%;\n}\n/*\n * \u80FD\u8F6C\u8D77\u6765\u7684\u592A\u6781\u56FE\u624D\u5E05\uFF01\n */\n@keyframes rotation1 {\n  to {\n    transform: translateX(-50%) rotate(360deg);\n  }\n}\n@keyframes rotation2 {\n  to{\n    transform: translate(-50%, -50%) rotate(360deg);\n  }\n}\n@media (pointer: fine) {\n  #div1 {\n    animation: 3s rotation1 linear infinite reverse;\n  }\n}\n@media (pointer: coarse) {\n  #div1 {\n    animation: 3s rotation2 linear infinite reverse;\n  }\n}\n\n";
+var str1 = "\n/*\n * \u4F60\u597D\uFF0C\u6211\u53EB\u53EB\u5C0F\u5B63\n * \u63A5\u4E0B\u6765\u6211\u8981\u5C55\u793A\u4E00\u4E0B\u6211\u7684\u524D\u7AEF\u529F\u5E95\n * \u9996\u5148\u6211\u8981\u51C6\u5907\u4E00\u4E2Adiv\n */\n#div1 {\n  width: 200px;\n  height: 200px;\n}\n/*\n * \u63A5\u4E0B\u6765\uFF0C\u6211\u8981\u628Adiv\u53D8\u6210\u4E00\u4E2A\u516B\u5366\u56FE\n * \u9996\u5148\uFF0C\u628Adiv\u53D8\u6210\u4E00\u4E2A\u5706\n */\n#div1 {\n  border-radius: 50%;\n  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);\n  border: none;\n}\n/*\n * \u516B\u5366\u662F\u9634\u9633\u5F62\u6210\u7684\n * \u4E00\u9ED1\u4E00\u767D\n */\n#div1 {\n  background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%,rgba(255, 255, 255, 1) 50%,rgba(0, 0, 0, 1) 50%,rgba(0, 0, 0, 1) 100%);\n}\n/* \n * \u52A0\u4E00\u5BF9\u795E\u79D8\u7684\u5C0F\u7403\n */\n#div1::before {\n  width: 100px;\n  height: 100px;\n  top: 0;\n  left: 50%;\n  transform: translateX(-50%);\n  background: radial-gradient(circle,rgba(255, 255, 255, 1) 15%,rgba(0, 0, 0, 1) 15%,rgba(0, 0, 0, 1) 100%);\n  border-radius: 50%;\n}\n#div1::after {\n  width: 100px;\n  height: 100px;\n  bottom: 0;\n  left: 50%;\n  transform: translateX(-50%);\n  background: radial-gradient(circle,rgba(0, 0, 0, 1) 15%,rgba(255, 255, 255, 1) 15%,rgba(255, 255, 255, 1) 100%);\n  border-radius: 50%;\n}\n/*\n * \u80FD\u8F6C\u8D77\u6765\u7684\u592A\u6781\u56FE\u624D\u5E05\uFF01\n */\n#div1 {\n  animation: 3s rotation linear infinite reverse;\n}";
 
-var str2 = "";
+// 检测是手机端还是电脑端，根据情况添加太极图旋转动画
+if (matchMedia("(pointer:fine)").matches) {
+  var str2 = "\n@keyframes rotation {\n  to {\n    transform: translateX(-50%) rotate(360deg);\n  }\n}";
+  str1 += str2;
+} else {
+  var _str = "\n@keyframes rotation {\n  to {\n    transform: translate(-50%, -50%) rotate(360deg);\n  }\n}";
+  str1 += _str;
+}
+
+var str3 = "";
 var n = 0;
 
 var step = function step() {
@@ -117,19 +126,19 @@ var step = function step() {
     switch (str1[n]) {
       // 如果是回车，就返回<br>
       case "\n":
-        str2 += "<br>";
+        str3 += "<br>";
         break;
       // 如果是空格，就返回&nbsp
       case " ":
-        str2 += "&nbsp";
+        str3 += "&nbsp";
         break;
       // 如果都不是，就原样返回
       default:
-        str2 += str1[n];
+        str3 += str1[n];
         break;
     }
 
-    html.innerHTML = str2;
+    html.innerHTML = str3;
     style.innerHTML = str1.substring(0, n);
     // 每次写完html，都向下滚动到最底。
     window.scrollTo(0, 99999);
@@ -143,4 +152,4 @@ var step = function step() {
 
 step();
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.ab136fe3.map
+//# sourceMappingURL=main.186ebd8c.map

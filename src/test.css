@@ -7,3 +7,24 @@
 div1.start {
   animation: rotation 1s;
 }
+
+@keyframes rotation1 {
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+@keyframes rotation2 {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+@media (pointer: fine) {
+  #div1 {
+    animation: 3s rotation1 linear infinite reverse;
+  }
+}
+@media (pointer: coarse) {
+  #div1 {
+    animation: 3s rotation2 linear infinite reverse;
+  }
+}

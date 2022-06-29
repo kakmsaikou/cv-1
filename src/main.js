@@ -51,30 +51,30 @@ let str1 = `
 /*
  * 能转起来的太极图才帅！
  */
-@keyframes rotation1 {
+#div1 {
+  animation: 3s rotation linear infinite reverse;
+}`;
+
+// 检测是手机端还是电脑端，根据情况添加太极图旋转动画
+if (matchMedia("(pointer:fine)").matches) {
+  let str2 = `
+@keyframes rotation {
   to {
     transform: translateX(-50%) rotate(360deg);
   }
-}
-@keyframes rotation2 {
-  to{
+}`;
+  str1 += str2;
+} else {
+  let str2 = `
+@keyframes rotation {
+  to {
     transform: translate(-50%, -50%) rotate(360deg);
   }
-}
-@media (pointer: fine) {
-  #div1 {
-    animation: 3s rotation1 linear infinite reverse;
-  }
-}
-@media (pointer: coarse) {
-  #div1 {
-    animation: 3s rotation2 linear infinite reverse;
-  }
+}`;
+  str1 += str2;
 }
 
-`;
-
-let str2 = "";
+let str3 = "";
 let n = 0;
 
 let step = () => {
@@ -82,19 +82,19 @@ let step = () => {
     switch (str1[n]) {
       // 如果是回车，就返回<br>
       case "\n":
-        str2 += "<br>";
+        str3 += "<br>";
         break;
       // 如果是空格，就返回&nbsp
       case " ":
-        str2 += "&nbsp";
+        str3 += "&nbsp";
         break;
       // 如果都不是，就原样返回
       default:
-        str2 += str1[n];
+        str3 += str1[n];
         break;
     }
 
-    html.innerHTML = str2;
+    html.innerHTML = str3;
     style.innerHTML = str1.substring(0, n);
     // 每次写完html，都向下滚动到最底。
     window.scrollTo(0, 99999);
