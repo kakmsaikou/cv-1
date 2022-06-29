@@ -49,18 +49,29 @@ let str1 = `
   border-radius: 50%;
 }
 /*
- * 能转起来的太极图才带感嘛！
+ * 能转起来的太极图才帅！
  */
-@keyframes rotation {
+@keyframes rotation1 {
   to {
     transform: translateX(-50%) rotate(360deg);
   }
 }
-@media (pointer: fine) {
-  #div1 {
-    animation: 3s rotation linear infinite reverse;
+@keyframes rotation2 {
+  to{
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+@media (pointer: fine) {
+  #div1 {
+    animation: 3s rotation1 linear infinite reverse;
+  }
+}
+@media (pointer: coarse) {
+  #div1 {
+    animation: 3s rotation2 linear infinite reverse;
+  }
+}
+
 `;
 
 let str2 = "";
