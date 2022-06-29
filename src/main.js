@@ -56,8 +56,10 @@ let str1 = `
     transform: translateX(-50%) rotate(360deg);
   }
 }
-#div1 {
-  animation: 3s rotation linear infinite reverse;
+@media (pointer: fine) {
+  #div1 {
+    animation: 3s rotation linear infinite reverse;
+  }
 }
 `;
 
