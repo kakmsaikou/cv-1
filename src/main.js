@@ -48,6 +48,17 @@ let str1 = `
   background: radial-gradient(circle,rgba(0, 0, 0, 1) 15%,rgba(255, 255, 255, 1) 15%,rgba(255, 255, 255, 1) 100%);
   border-radius: 50%;
 }
+/*
+ * 能转起来的太极图才带感嘛！
+ */
+@keyframes rotation {
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+#div1 {
+  animation: 3s rotation linear infinite reverse;
+}
 `;
 
 let str2 = "";

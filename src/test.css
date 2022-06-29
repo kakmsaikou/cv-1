@@ -1,0 +1,9 @@
+@keyframes rotation {
+  to {
+    transform: translateX(-50%), rotate(360deg);
+  }
+}
+
+div1.start {
+  animation: rotation 1s;
+}
